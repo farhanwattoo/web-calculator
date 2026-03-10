@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>高精度・多機能 科学電卓 (AI計算・数学計算対応) | 無料ツール</title>
+  <meta name="description"
+    content="無料のブラウザベースウェブ電卓。足し算、引き算、掛け算、割り算から、平方根、累乗、三角関数などの科学計算まで、高精度計算が可能です。AI計算、データ分析、幅広い数学計算に対応。履歴保存、ダークモード完備。スマホ対応。">
+  <meta name="keywords" content="電卓, 科学電卓, 数学計算, 科学計算, 割り算, 足し算, 掛け算, 高精度計算, AI計算, 関数電卓, 無料電卓">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yourdomain.com/" />
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="高精度・多機能 科学電卓 (AI計算・数学計算対応)">
+  <meta property="og:description" content="無料のブラウザベースウェブ電卓。科学計算から日常の足し算・割り算まで。スマホ対応の洗練されたUI。">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="高精度・多機能 科学電卓">
+  <meta name="twitter:description" content="ブラウザで動く無料のウェブ電卓。高精度計算から各種科学計算まで対応。">
+
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "高精度・多機能 科学電卓",
+      "url": "https://yourdomain.com/"
+    }
+    </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "高精度・多機能 科学電卓",
+      "operatingSystem": "Any",
+      "applicationCategory": "CalculatorApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      "description": "ブラウザで動く無料のウェブ高精度電卓。科学計算、AI計算、複雑な検証用数学計算に対応。"
+    }
+    </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "この電卓は無料ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、完全無料でご利用いただけます。登録等の必要もありません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "計算履歴は保存されますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、ブラウザのローカルストレージを使用して計算履歴を自動的に保存します。また、履歴をCSVやテキストとして書き出すことも可能です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "モバイルでも使えますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、レスポンシブデザインを採用しており、スマートフォンやタブレット（iOS、Android）でも直感的で使いやすい大きなボタンで操作できます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "計算結果をコピーできますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "計算結果部分をタップ（またはクリック）するだけで、クリップボードにコピーされる機能が備わっています。"
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body>
+  <header>
+    <h1>科学計算ウェブ電卓</h1>
+    <div class="controls">
+      <button class="mode-toggle" id="modeToggle">関数電卓表示</button>
+      <button class="theme-toggle" id="themeToggle">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="calc-container">
+      <!-- Calculator -->
+      <section class="calculator" aria-label="電卓アプリケーション">
+        <div class="display-section">
+          <button class="rad-deg-toggle" id="angleToggle">RAD</button>
+          <div class="history-expr" id="displayHistory"></div>
+          <div class="current-input" id="displayInput" title="クリックしてコピー">0</div>
+        </div>
+
+        <div class="grid-buttons" id="keypad">
+          <!-- Row 1: Advanced mainly -->
+          <button class="btn-adv btn-op" data-val="sin(">sin</button>
+          <button class="btn-adv btn-op" data-val="cos(">cos</button>
+          <button class="btn-adv btn-op" data-val="tan(">tan</button>
+          <button class="btn-adv" data-val="π">π</button>
+          <button class="btn-adv" data-val="e">e</button>
+
+          <button class="btn-adv btn-op" data-val="asin(">asin</button>
+          <button class="btn-adv btn-op" data-val="acos(">acos</button>
+          <button class="btn-adv btn-op" data-val="atan(">atan</button>
+          <button class="btn-adv btn-op" data-val="log(">log</button>
+          <button class="btn-adv btn-op" data-val="ln(">ln</button>
+
+          <!-- Row 2 -->
+          <button class="btn-adv btn-op" data-val="abs(">abs</button>
+          <button class="btn-adv btn-op" data-val="!">n!</button>
+          <button class="btn-op" data-val="^">x<sup>y</sup></button>
+          <button class="btn-op" data-val="√(">√</button>
+          <button class="btn-op" data-val="%">%</button>
+
+          <!-- Row 3 -->
+          <button class="btn-adv" data-val="(">(</button>
+          <button class="btn-adv" data-val=")">)</button>
+          <button class="btn-danger" id="btnAC">AC</button>
+          <button class="btn-danger" id="btnDel">DEL</button>
+          <button class="btn-op" data-val="÷">÷</button>
+
+          <!-- Row 4 -->
+          <button class="btn-adv btn-op" style="visibility:hidden"></button>
+          <button class="btn-adv btn-op" style="visibility:hidden"></button>
+          <button data-val="7">7</button>
+          <button data-val="8">8</button>
+          <button data-val="9">9</button>
+          <button class="btn-op" data-val="×">×</button>
+
+          <!-- Row 5 -->
+          <button class="btn-adv btn-op" style="visibility:hidden"></button>
+          <button class="btn-adv btn-op" style="visibility:hidden"></button>
+          <button data-val="4">4</button>
+          <button data-val="5">5</button>
+          <button data-val="6">6</button>
+          <button class="btn-op" data-val="-">-</button>
+
+          <!-- Row 6 -->
+          <button class="btn-adv btn-op" style="visibility:hidden"></button>
+          <button class="btn-adv btn-op" style="visibility:hidden"></button>
+          <button data-val="1">1</button>
+          <button data-val="2">2</button>
+          <button data-val="3">3</button>
+          <button class="btn-op" data-val="+">+</button>
+
+          <!-- Row 7 -->
+          <button class="btn-adv btn-op" style="visibility:hidden"></button>
+          <button class="btn-adv btn-op" style="visibility:hidden"></button>
+          <button data-val="00">00</button>
+          <button data-val="0">0</button>
+          <button data-val=".">.</button>
+          <button class="btn-eq" id="btnEq">=</button>
+        </div>
+      </section>
+
+      <!-- History Panel -->
+      <aside class="history-panel" aria-label="計算履歴">
+        <div class="history-header">
+          <h2>計算履歴</h2>
+          <div class="history-actions">
+            <button id="exportCsv">CSVエクスポート</button>
+            <button id="clearHistory" class="btn-danger">履歴消去</button>
+          </div>
+        </div>
+        <ul class="history-list" id="historyList">
+          <!-- History items will be populated here -->
+        </ul>
+      </aside>
+    </div>
+
+    <!-- SEO Content -->
+    <article class="seo-content">
+      <header>
+        <h2>高精度・多機能 科学計算電卓について</h2>
+      </header>
+      <p>
+        無料でお使いいただけるこのブラウザウェブ電卓は、シンプルで日常的な<strong>足し算、引き算、掛け算、割り算</strong>などの基本計算から、ルート(平方根)、累乗、三角関数（sin, cos,
+        tan）、対数（log,
+        ln）といった複雑な<strong>科学計算</strong>に至るまで、幅広く対応した高機能ツールです。アプリのインストールは一切不要で、パソコンはもちろん、スマホやタブレットからでもブラウザを開くだけで素早く起動し、快適に利用できます。当ツールの<strong>科学電卓</strong>モードを利用することで、専門的な計算もスムーズに行えます。
+      </p>
+
+      <h3>高度な「AI計算」や「数学計算」に対応</h3>
+      <p>
+        単なる数値の計算にとどまらず、プログラマーやITエンジニア、データサイエンティストが行う<strong>AI計算</strong>の基礎アルゴリズム検証や、学校や研究機関等で求められる統計学的な<strong>数学計算</strong>の効率化にも役立ちます。複雑な数式モデルや、業務システム・金融システムなどの内部ロジック開発においては、正確な<strong>高精度計算</strong>が不可欠です。本電卓は、そうした高度な開発のテスト・検証用プラットフォームとしても十分に活躍します。
+      </p>
+
+      <h3>プロフェッショナルな機能と履歴保存</h3>
+      <p>
+        複雑な<strong>数学計算</strong>や<strong>科学計算</strong>をサポートするため、当サイトの<strong>科学電卓</strong>では括弧計算、絶対値、階乗などの高度な演算ロジックを採用。<strong>掛け算</strong>や<strong>割り算</strong>の優先順位といった基礎的なものから、パーセンテージ処理まで自動的かつ正確に判定します。また、直近の計算履歴を最大50件までお使いのデバイスに自動保存。過去の<strong>足し算</strong>や<strong>高精度計算</strong>の結果をいつでも呼び出し、CSVファイルとして一括エクスポートすることも可能です。
+      </p>
+
+      <section class="faq-section">
+        <h3>よくある質問 (FAQ)</h3>
+        <dl>
+          <dt>Q1: この電卓は無料ですか？</dt>
+          <dd>A: はい、完全無料でご利用いただけます。登録やアプリのインストール等の必要もありません。ブラウザを開くだけですぐに使えます。</dd>
+
+          <dt>Q2: 計算履歴は保存されますか？</dt>
+          <dd>A: はい、お使いのブラウザのローカルストレージを使用して計算履歴を自動的に保存します。消去可能なほか、履歴をCSVとしてエクスポートすることも可能です。</dd>
+
+          <dt>Q3: モバイル(スマホ)でも使えますか？</dt>
+          <dd>A: はい、モバイルファーストのレスポンシブデザインを採用しており、スマートフォンやタブレット（iOS、Android等）でも直感的で使いやすい大きなボタンで操作できます。</dd>
+
+          <dt>Q4: 計算結果をコピーできますか？</dt>
+          <dd>A: 計算結果の数字部分をタップまたはクリックするだけで、自動的にクリップボードに結果がコピーされます。他のアプリへの貼り付けもスムーズです。</dd>
+        </dl>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="フッターナビゲーション">
+      <a href="index.html">ホーム</a> |
+      <a href="privacy.html">プライバシーポリシー</a> |
+      <a href="terms.html">利用規約</a> |
+      <a href="cookie.html">クッキーポリシー</a>
+    </nav>
+    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">&copy; 2026 高精度計算ツール. All Rights
+      Reserved.</p>
+  </footer>
+
+  <div class="toast" id="toast">コピーしました</div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
