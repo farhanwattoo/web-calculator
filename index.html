@@ -88,25 +88,29 @@
 <body>
   <header>
     <div class="site-brand">
-      <a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center;">
-        <span style="font-size: 1.5rem; margin-right: 0.5rem;">🔢</span>
-        <h1 style="font-size: 1.25rem; font-weight: 700; margin: 0;">電卓アプリ.com | 高精度な科学計算・関数電卓を無料で</h1>
+      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap: 0.75rem;">
+        <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md);">
+          <span style="font-size: 1.25rem; color: white;">🔢</span>
+        </div>
+        <h1 style="font-weight: 700; margin: 0;">電卓アプリ.com | 高精度な科学計算・関数電卓を無料で</h1>
       </a>
     </div>
     <div class="controls">
-      <button class="mode-toggle" id="modeToggle">関数電卓を表示</button>
-      <button class="theme-toggle" id="themeToggle">🌓</button>
+      <button class="mode-toggle" id="modeToggle" aria-expanded="false">
+        <span>関数電卓</span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" aria-label="テーマ切替">🌓</button>
     </div>
   </header>
 
   <main>
     <div class="calc-container">
-      <!-- Calculator -->
+      <!-- Calculator Component -->
       <section class="calculator" aria-label="電卓アプリケーション">
         <div class="display-section">
           <button class="rad-deg-toggle" id="angleToggle">RAD</button>
-          <div class="history-expr" id="displayHistory"></div>
-          <div class="current-input" id="displayInput" title="クリックしてコピー">0</div>
+          <div class="history-expr" id="displayHistory" aria-live="polite"></div>
+          <div class="current-input" id="displayInput" title="クリックしてコピー" aria-live="polite">0</div>
         </div>
 
         <div class="grid-buttons" id="keypad">
@@ -114,8 +118,8 @@
           <button class="btn-adv btn-op" data-val="sin(">sin</button>
           <button class="btn-adv btn-op" data-val="cos(">cos</button>
           <button class="btn-adv btn-op" data-val="tan(">tan</button>
-          <button class="btn-adv" data-val="π">π</button>
-          <button class="btn-adv" data-val="e">e</button>
+          <button class="btn-adv btn-op" data-val="π">π</button>
+          <button class="btn-adv btn-op" data-val="e">e</button>
 
           <button class="btn-adv btn-op" data-val="asin(">asin</button>
           <button class="btn-adv btn-op" data-val="acos(">acos</button>
@@ -130,39 +134,39 @@
           <button class="btn-op" data-val="%">%</button>
 
           <!-- Standard Buttons -->
-          <button class="btn-adv" data-val="(">(</button>
-          <button class="btn-adv" data-val=")">)</button>
-          <button class="btn-danger" id="btnAC">AC</button>
-          <button class="btn-danger" id="btnDel">DEL</button>
-          <button class="btn-op" data-val="÷">÷</button>
+          <button class="btn-adv btn-op" data-val="(">(</button>
+          <button class="btn-adv btn-op" data-val=")">)</button>
+          <button class="btn-danger" id="btnAC" aria-label="オールクリア">AC</button>
+          <button class="btn-danger" id="btnDel" aria-label="1文字削除">DEL</button>
+          <button class="btn-op" data-val="÷" aria-label="除算">÷</button>
 
           <button class="btn-adv btn-op" style="visibility:hidden"></button>
           <button class="btn-adv btn-op" style="visibility:hidden"></button>
           <button data-val="7">7</button>
           <button data-val="8">8</button>
           <button data-val="9">9</button>
-          <button class="btn-op" data-val="×">×</button>
+          <button class="btn-op" data-val="×" aria-label="乗算">×</button>
 
           <button class="btn-adv btn-op" style="visibility:hidden"></button>
           <button class="btn-adv btn-op" style="visibility:hidden"></button>
           <button data-val="4">4</button>
           <button data-val="5">5</button>
           <button data-val="6">6</button>
-          <button class="btn-op" data-val="-">-</button>
+          <button class="btn-op" data-val="-" aria-label="減算">-</button>
 
           <button class="btn-adv btn-op" style="visibility:hidden"></button>
           <button class="btn-adv btn-op" style="visibility:hidden"></button>
           <button data-val="1">1</button>
           <button data-val="2">2</button>
           <button data-val="3">3</button>
-          <button class="btn-op" data-val="+">+</button>
+          <button class="btn-op" data-val="+" aria-label="加算">+</button>
 
           <button class="btn-adv btn-op" style="visibility:hidden"></button>
           <button class="btn-adv btn-op" style="visibility:hidden"></button>
           <button data-val="00">00</button>
           <button data-val="0">0</button>
           <button data-val=".">.</button>
-          <button class="btn-eq" id="btnEq">=</button>
+          <button class="btn-eq" id="btnEq" aria-label="計算実行">=</button>
         </div>
       </section>
 
@@ -171,7 +175,7 @@
         <div class="history-header">
           <h2>計算履歴</h2>
           <div class="history-actions">
-            <button id="exportCsv">CSV出力</button>
+            <button id="exportCsv" class="btn-op">CSV出力</button>
             <button id="clearHistory" class="btn-danger">全消去</button>
           </div>
         </div>
@@ -182,58 +186,45 @@
     <!-- SEO Content Section -->
     <article class="seo-content">
       <header>
-        <h2>電卓アプリ.com：あなたのブラウザを理想の計算機に</h2>
+        <h2>電卓アプリ.com | プロフェッショナルな計算体験をすべての人に</h2>
       </header>
       <p>
-        「電卓アプリ.com」は、日々の単純な計算から専門的な数学・物理の計算までを強力にサポートする、ブラウザ完結型の<strong>高機能ウェブ電卓</strong>です。インストールの手間はなく、PC、スマートフォン、タブレットからアクセスするだけで即座に利用可能。直感的なインターフェースと、ユーザーのプライバシーを最優先にした設計が特徴です。
+        「電卓アプリ.com」は、洗練されたデザインと驚異的な機能性を融合させた、次世代の<strong>ブラウザ完結型ウェブ電卓</strong>です。日々の家計管理から、高度な数学的検証、物理エンジニアリングの計算まで、あらゆるニーズに応えるために、モダンなインターフェースと精密な演算ロジックを搭載しました。
       </p>
-
-      <h3>日常の四則演算から高度な科学計算まで</h3>
-      <p>
-        家計簿の集計や買い物などの日常的な用途に適した<strong>四則演算（足し算、引き算、掛け算、割り算）</strong>はもちろん、エンジニアやデータサイエンティストに欠かせないルート計算、累乗、<strong>三角関数（sin, cos, tan）</strong>、対数計算などの高度な<strong>科学計算</strong>に対応しています。数学的な優先順位を考慮したインテリジェントな演算ロジックにより、複雑な数式も正確に解き明かします。
-      </p>
-
-      <h3>プロフェッショナルな機能群</h3>
-      <p>
-        当サイトの電卓は、ただ数値を出すだけのツールではありません。業務や学習の効率を最大化するための機能を備えています。
-      </p>
-      <ul>
-        <li><strong>履歴管理：</strong> 直近の履歴をブラウザに自動保存。過去の計算をいつでも参照・再利用できます。</li>
-        <li><strong>データの書き出し：</strong> 計算履歴をCSV形式でエクスポートし、表計算ソフトなどで二次利用が可能です。</li>
-        <li><strong>ローカル処理：</strong> 計算処理はすべてデバイス内で行われるため、データが外部のサーバーに送信されることはなく、高いセキュリティを保持します。</li>
-        <li><strong>パーソナライズ：</strong> ダークモード対応により、夜間や暗い場所でも快適に作業を続けられます。</li>
-      </ul>
 
       <section class="faq-section">
-        <h3>計算のヒントとよくある質問</h3>
+        <h3>使いこなしガイド & FAQ</h3>
         <dl>
-          <dt>どのような計算に対応していますか？</dt>
-          <dd>基本的な四則演算に加え、sin/cos/tan、asin/acos/atan、log（10底）、ln（e底）、絶対値、階乗（n!）、べき乗（x^y）、平方根など幅広く対応しています。</dd>
+          <dt>科学計算モードと基本モードの切り替え</dt>
+          <dd>画面上部の「関数電卓」ボタンをタップするだけで、sin/cos/tanや対数、√、べき乗といった高度なボタンが即座に表示されます。集中したいときは基本モードに戻して、シンプルに使用することも可能です。</dd>
 
-          <dt>スマホで計算結果をコピーするには？</dt>
-          <dd>計算結果が表示されている数字の部分を軽くタップするだけで、自動的にクリップボードにコピーされます。</dd>
+          <dt>高いセキュリティとプライバシー</dt>
+          <dd>当サイトの計算処理はすべてお客様のデバイス上のメモリ内で行われます。入力内容や生成された結果が外部サーバーに送信されることはなく、完全なプライバシーが保証されています。</dd>
 
-          <dt>関数電卓モードの使い方は？</dt>
-          <dd>右上の「関数電卓を表示」ボタンをクリックすると、高度な演算ボタン群が展開されます。不要なときは隠すことで、シンプルな電卓としても利用可能です。</dd>
+          <dt>計算履歴の活用方法</dt>
+          <dd>右側のパネル（モバイルでは下部）に、直近の計算履歴がリアルタイムでリストアップされます。過去の結果をクリックして再入力したり、CSV形式で書き出してデータ分析に活用したりすることができます。</dd>
 
-          <dt>計算履歴が消えてしまいました</dt>
-          <dd>ブラウザのキャッシュや履歴を完全にクリアすると、ローカルに保存されていた計算履歴もリセットされます。重要なデータはCSV出力機能を使って保存することをお勧めします。</dd>
+          <dt>ダークモードの自動保存</dt>
+          <dd>右上の月のアイコンをタップすると、目に優しいダークテーマに切り替わります。この設定は保存されるため、次回訪問時も同じテーマで再開できます。</dd>
         </dl>
       </section>
     </article>
   </main>
 
   <footer>
-    <nav aria-label="フッターナビゲーション">
-      <a href="index.html">ホーム</a> |
-      <a href="privacy.html">プライバシーポリシー</a> |
-      <a href="terms.html">利用規約</a> |
+    <nav aria-label="フッターナビゲーション links">
+      <a href="index.html">ホーム</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
       <a href="cookie.html">クッキーポリシー</a>
     </nav>
-    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">&copy; 2026 電卓アプリ.com. All Rights Reserved.</p>
+    <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 電卓アプリ.com. All Rights Reserved.</p>
   </footer>
 
-  <div class="toast" id="toast">結果をコピーしました</div>
+  <div class="toast" id="toast">
+    <span>✨</span>
+    <span>クリップボードにコピーしました</span>
+  </div>
 
   <script src="script.js"></script>
 </body>
