@@ -1,0 +1,19 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "xn--cckvf7b058rjy0e.com"
+        }
+      ],
+      "destination": "https://電卓アプリ.com/$1",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/$1" }
+  ]
+}
