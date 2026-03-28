@@ -83,13 +83,28 @@ header {
 
 .site-brand h1 {
   font-family: 'Lexend', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
   background: linear-gradient(to right, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.02em;
+}
+
+@media (max-width: 1024px) {
+  .brand-descriptor {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 1rem;
+  }
+  .site-brand h1 {
+    font-size: 1rem;
+  }
 }
 
 /* Page Layout */
