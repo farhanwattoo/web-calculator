@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://電卓アプリ.com/sitemap.xml
+Sitemap: https://xn--cckvf7b058rjy0e.com/sitemap.xml
